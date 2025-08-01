@@ -1,3 +1,4 @@
+#lista de afazeres
 lista_tarefas = []
 lista_concluidas = []
 
@@ -77,5 +78,3 @@ if __name__ == '__main__':
             break
         else:
             print("Opção inválida, digite novamente.")
-
-            #moraisdev mt loco
