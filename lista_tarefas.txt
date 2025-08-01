@@ -1,0 +1,5 @@
+[x] CORRER
+[ ] ANDAR
+[ ] ESTUDAR
+[x] COMER
+[x] ANDAR DE BICICLETA
