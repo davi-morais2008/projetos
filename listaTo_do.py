@@ -18,11 +18,14 @@ def remov_tarefa():
             break
 
 def exibir_tarefas():
+    cont = 0
     for x in lista_tarefas:
         if x not in lista_concluidas:
-            print(f"[ ] {x}")
+            print(f"{cont}[ ] {x}")
+            cont+=1
         else:
-                print(f"[x] {x}")
+                print(f"{cont}[x] {x}")
+                cont+=1
     if len(lista_tarefas) == 0:
         print('Sua lista de tarefas está vazia.')
         pass
