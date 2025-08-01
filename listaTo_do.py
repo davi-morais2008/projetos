@@ -1,4 +1,4 @@
-#lista de afazeres do davi zica lindo
+#lista de afazeres do davi zica lindogf
 lista_tarefas = []
 lista_concluidas = []
 
