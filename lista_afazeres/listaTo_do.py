@@ -1,10 +1,24 @@
-#lista de afazeres do davi zica lindogfuyu
 lista_tarefas = []
 lista_concluidas = []
 
+ARQUIVO = "C:/Users/SENAI/Desktop/projetos/lista_afazeres/lista_tarefas.txt"
+
+def salvar_arquivo():
+    with open(ARQUIVO, "w") as f:
+        for tarefa in lista_tarefas:
+            if tarefa in lista_concluidas:
+                f.write(f"[x] {tarefa}\n")
+            else:
+                f.write(f"[ ] {tarefa}\n")
+
 def add_tarefa():
-    lista_tarefas.append(input("Digite a tarefa que deseje adcionar: ").upper())
-    print("Tarefa adicionada.")
+    tarefa = (input("Digite a tarefa que deseje adicionar: ").upper())
+    if tarefa  not in lista_tarefas:
+        lista_tarefas.append(tarefa)
+        print("Tarefa adicionada.")
+    else:
+        print("Está tarefa ja está na sua lista")
+    salvar_arquivo()
     pass
 
 def remov_tarefa():
@@ -15,20 +29,22 @@ def remov_tarefa():
         else:
             lista_tarefas.remove(tarefa_removida)
             print(f'A tarefa {tarefa_removida} foi removida de sua lista.')
+            salvar_arquivo()
             break
 
 def exibir_tarefas():
-    cont = 0
-    for x in lista_tarefas:
-        if x not in lista_concluidas:
-            print(f"{cont}[ ] {x}")
-            cont+=1
-        else:
-                print(f"{cont}[x] {x}")
-                cont+=1
-    if len(lista_tarefas) == 0:
+    if not lista_tarefas:
         print('Sua lista de tarefas está vazia.')
-        pass
+        return
+
+    print("\n========= SUA LISTA DE TAREFAS =========")
+    for tarefa in lista_tarefas:
+        if tarefa in lista_concluidas:
+            status = "[x]"
+        else:
+            status = "[ ]"
+        print(f"{status} {tarefa}")
+    print("========================================")
 
 def concluir_tarefa():
     while True:
@@ -38,7 +54,25 @@ def concluir_tarefa():
         else:
             print(f'A tarefa {tarefa_concluida} foi marcada como concluída.')
             lista_concluidas.append(tarefa_concluida)
+            salvar_arquivo()
             break
+
+def salvar_lista():
+    try:
+        with open(ARQUIVO, "r") as f:
+            for linha in f:
+                linha = linha.strip()       #esse strip arranca as quebra de linha 
+                if linha.startswith("[x] "):
+                    tarefa = linha[4:].strip()      
+                    lista_tarefas.append(tarefa)
+                    lista_concluidas.append(tarefa)
+                elif linha.startswith("[ ] "):      #startswith ve se a string cmç com [ ]
+                    tarefa = linha[4:].strip()      #aqui nesse caso aqui o strip vai remover os 4 primeiros caracteres
+                    lista_tarefas.append(tarefa)
+    except FileNotFoundError:
+        with open(ARQUIVO, "a") as f:
+            pass
+
 
 def exibir_menu():
     print("""========================================
@@ -55,6 +89,7 @@ def exibir_menu():
     return opcao
     
 if __name__ == '__main__':
+    salvar_lista()
     while True:
         opcao = exibir_menu()
 
