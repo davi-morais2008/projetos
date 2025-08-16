@@ -1,7 +1,8 @@
-from funcoes import lista_tarefas, lista_concluidas, salvar_arquivo, add_tarefa, remov_tarefa, exibir_tarefas, concluir_tarefa, salvar_lista, exibir_menu
-import json
+from funcoes import lista_tarefas, lista_concluidas, add_tarefa, remov_tarefa, exibir_tarefas, concluir_tarefa, salvar_lista, exibir_menu
+
 
 while True:
+    salvar_lista()
     opcao = exibir_menu()
 
     if opcao == '1':
@@ -22,6 +23,7 @@ while True:
             print("Todas as tarefas estão concluídas.")
         else:
             concluir_tarefa()
+
     elif opcao == '5':
         print("Saindo do programa...")
         break

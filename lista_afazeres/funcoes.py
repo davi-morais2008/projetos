@@ -1,6 +1,6 @@
 lista_tarefas = []
 lista_concluidas = []
-import json
+
 
 ARQUIVO = "C:/Users/SENAI/Desktop/projetos/lista_afazeres/lista_tarefas.txt"
 
